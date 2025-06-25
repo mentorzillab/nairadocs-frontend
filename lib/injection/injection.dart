@@ -26,6 +26,7 @@ Future<void> configureDependencies() async {
   dio.options.connectTimeout = const Duration(seconds: 30);
   dio.options.receiveTimeout = const Duration(seconds: 30);
   getIt.registerSingleton<Dio>(dio);
-  
+
+  // Initialize generated dependencies
   getIt.init();
 }
