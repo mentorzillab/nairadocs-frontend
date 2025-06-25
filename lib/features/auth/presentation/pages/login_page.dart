@@ -30,11 +30,11 @@ class LoginPage extends StatelessWidget {
               )
             ),
             const SizedBox(height: 30),
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: AppStrings.email),
             ),
             const SizedBox(height: 16),
-            TextField(
+            const TextField(
               obscureText: true,
               decoration: InputDecoration(labelText: AppStrings.password),
             ),
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {},
-                child: Text(AppStrings.forgotPassword),
+                child: const Text(AppStrings.forgotPassword),
               ),
             ),
             const SizedBox(height: 16),
@@ -57,10 +57,10 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
                 context.go('/dashboard');
               },
-              child: Text(AppStrings.logIn),
+              child: const Text(AppStrings.logIn),
             ),
             const SizedBox(height: 16),
-            Text(AppStrings.dontHaveAccount)
+            const Text(AppStrings.dontHaveAccount)
           ],
         ),
       ),

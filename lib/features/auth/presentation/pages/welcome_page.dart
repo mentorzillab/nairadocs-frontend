@@ -24,28 +24,28 @@ class WelcomePage extends StatelessWidget {
                   size: 80
                 ),
                 const SizedBox(height: 20),
-                Text(
+                const Text(
                   AppStrings.welcomeTitle,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 28,
                     fontWeight: FontWeight.bold
                   ),
                 ),
                 const SizedBox(height: 20),
-                ListTile(
-                  leading: const Icon(Icons.check_circle, color: Colors.white),
+                const ListTile(
+                  leading: Icon(Icons.check_circle, color: Colors.white),
                   title: Text(
                     AppStrings.secureUpload,
-                    style: const TextStyle(color: Colors.white)
+                    style: TextStyle(color: Colors.white)
                   ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.check_circle, color: Colors.white),
+                const ListTile(
+                  leading: Icon(Icons.check_circle, color: Colors.white),
                   title: Text(
                     AppStrings.fastVerification,
-                    style: const TextStyle(color: Colors.white)
+                    style: TextStyle(color: Colors.white)
                   ),
                 ),
                 const SizedBox(height: 40),
@@ -61,7 +61,7 @@ class WelcomePage extends StatelessWidget {
                   onPressed: () {
                     context.go('/login');
                   },
-                  child: Text(AppStrings.getStarted),
+                  child: const Text(AppStrings.getStarted),
                 )
               ],
             ),
