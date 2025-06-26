@@ -7,6 +7,7 @@ class User extends Equatable {
   final String lastName;
   final String? phoneNumber;
   final String? profileImageUrl;
+  final String role;
   final bool? isEmailVerified;
   final bool? isPhoneVerified;
   final DateTime? createdAt;
@@ -19,6 +20,7 @@ class User extends Equatable {
     required this.lastName,
     this.phoneNumber,
     this.profileImageUrl,
+    this.role = 'user',
     this.isEmailVerified,
     this.isPhoneVerified,
     this.createdAt,
@@ -37,6 +39,7 @@ class User extends Equatable {
         lastName,
         phoneNumber,
         profileImageUrl,
+        role,
         isEmailVerified,
         isPhoneVerified,
         createdAt,

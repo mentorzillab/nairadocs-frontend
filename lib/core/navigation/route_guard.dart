@@ -47,10 +47,8 @@ class RouteGuard {
       final user = authState.user;
       
       // Check if profile is incomplete
-      final hasBasicInfo = user.firstName != null && 
-                          user.firstName!.isNotEmpty &&
-                          user.lastName != null && 
-                          user.lastName!.isNotEmpty;
+      final hasBasicInfo = user.firstName.isNotEmpty &&
+                          user.lastName.isNotEmpty;
       
       if (!hasBasicInfo) {
         // If trying to access main app without complete profile
@@ -74,7 +72,7 @@ class RouteGuard {
       final user = authState.user;
       
       // Check if email is not verified
-      if (!user.isEmailVerified) {
+      if (user.isEmailVerified != true) {
         // If trying to access sensitive routes without email verification
         final sensitiveRoutes = ['/documents/upload', '/profile/security'];
         final currentPath = state.uri.path;

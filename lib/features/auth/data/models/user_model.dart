@@ -5,9 +5,6 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel extends User {
-  @JsonKey(name: 'role')
-  final String role;
-
   const UserModel({
     required super.id,
     required super.email,
@@ -15,11 +12,11 @@ class UserModel extends User {
     required super.lastName,
     super.phoneNumber,
     super.profileImageUrl,
+    super.role = 'user',
     super.isEmailVerified,
     super.isPhoneVerified,
     super.createdAt,
     super.updatedAt,
-    required this.role,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
@@ -34,11 +31,11 @@ class UserModel extends User {
       lastName: user.lastName,
       phoneNumber: user.phoneNumber,
       profileImageUrl: user.profileImageUrl,
+      role: user.role,
       isEmailVerified: user.isEmailVerified,
       isPhoneVerified: user.isPhoneVerified,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
-      role: 'USER', // Default role
     );
   }
 
@@ -50,6 +47,7 @@ class UserModel extends User {
       lastName: lastName,
       phoneNumber: phoneNumber,
       profileImageUrl: profileImageUrl,
+      role: role,
       isEmailVerified: isEmailVerified ?? false,
       isPhoneVerified: isPhoneVerified ?? false,
       createdAt: createdAt ?? DateTime.now(),
