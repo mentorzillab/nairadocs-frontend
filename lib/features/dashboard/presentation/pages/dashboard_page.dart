@@ -238,7 +238,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   return SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.all(24.0),
-                      child: ErrorWidget(
+                      child: AppErrorWidget(
                         message: state.message,
                         onRetry: () {
                           context.read<DocumentsBloc>().add(const DocumentsLoadRequested());

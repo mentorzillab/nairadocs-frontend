@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
-class ErrorWidget extends StatelessWidget {
+class AppErrorWidget extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
   final String? retryText;
@@ -9,7 +9,7 @@ class ErrorWidget extends StatelessWidget {
   final double? width;
   final double? height;
 
-  const ErrorWidget({
+  const AppErrorWidget({
     super.key,
     required this.message,
     this.onRetry,

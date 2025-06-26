@@ -184,7 +184,7 @@ class _DocumentsListPageState extends State<DocumentsListPage> {
                     );
                   } else if (state is DocumentsError) {
                     return SliverFillRemaining(
-                      child: ErrorWidget(
+                      child: AppErrorWidget(
                         message: state.message,
                         onRetry: () {
                           context.read<DocumentsBloc>().add(const DocumentsLoadRequested());
