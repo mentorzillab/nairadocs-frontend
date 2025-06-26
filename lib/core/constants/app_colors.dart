@@ -11,6 +11,8 @@ class AppColors {
   static const Color rejected = Color(0xFFFF4D4F);
   static const Color approved = Color(0xFF34D399);
   static const Color inReview = Color(0xFF60A5FA);
+  static const Color pending = Color(0xFFFBBF24);
+  static const Color expired = Color(0xFFF97316);
 
   // Additional Colors
   static const Color white = Color(0xFFFFFFFF);
