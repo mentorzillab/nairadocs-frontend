@@ -3,7 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
+import '../core/network/auth_interceptor.dart';
 import 'injection.config.dart';
 
 final getIt = GetIt.instance;
@@ -25,7 +28,19 @@ Future<void> configureDependencies() async {
   dio.options.baseUrl = 'http://localhost:3000/api/v1';
   dio.options.connectTimeout = const Duration(seconds: 30);
   dio.options.receiveTimeout = const Duration(seconds: 30);
+
+  // Add auth interceptor
+  dio.interceptors.add(AuthInterceptor(secureStorage));
+
   getIt.registerSingleton<Dio>(dio);
+
+  // Register LocalAuthentication
+  final localAuth = LocalAuthentication();
+  getIt.registerSingleton<LocalAuthentication>(localAuth);
+
+  // Register Connectivity
+  final connectivity = Connectivity();
+  getIt.registerSingleton<Connectivity>(connectivity);
 
   // Initialize generated dependencies
   getIt.init();
