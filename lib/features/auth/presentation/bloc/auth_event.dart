@@ -108,13 +108,13 @@ class AuthErrorCleared extends AuthEvent {
 }
 
 // Update user event
-class AuthUserUpdated extends AuthEvent {
+class AuthUserUpdateRequested extends AuthEvent {
   final String? firstName;
   final String? lastName;
   final String? phoneNumber;
   final String? profileImageUrl;
 
-  const AuthUserUpdated({
+  const AuthUserUpdateRequested({
     this.firstName,
     this.lastName,
     this.phoneNumber,
@@ -160,12 +160,12 @@ class AuthBiometricSetupRequested extends AuthEvent {
 }
 
 // Session management events
-class AuthSessionExpired extends AuthEvent {
-  const AuthSessionExpired();
+class AuthSessionExpiredEvent extends AuthEvent {
+  const AuthSessionExpiredEvent();
 }
 
-class AuthSessionRefreshed extends AuthEvent {
-  const AuthSessionRefreshed();
+class AuthSessionRefreshRequested extends AuthEvent {
+  const AuthSessionRefreshRequested();
 }
 
 // Account deletion event

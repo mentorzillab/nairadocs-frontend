@@ -34,13 +34,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEmailVerificationRequested>(_onAuthEmailVerificationRequested);
     on<AuthEmailVerificationResendRequested>(_onAuthEmailVerificationResendRequested);
     on<AuthErrorCleared>(_onAuthErrorCleared);
-    on<AuthUserUpdated>(_onAuthUserUpdated);
+    on<AuthUserUpdateRequested>(_onAuthUserUpdateRequested);
     on<AuthPasswordChangeRequested>(_onAuthPasswordChangeRequested);
     on<AuthBiometricCheckRequested>(_onAuthBiometricCheckRequested);
     on<AuthBiometricLoginRequested>(_onAuthBiometricLoginRequested);
     on<AuthBiometricSetupRequested>(_onAuthBiometricSetupRequested);
-    on<AuthSessionExpired>(_onAuthSessionExpired);
-    on<AuthSessionRefreshed>(_onAuthSessionRefreshed);
+    on<AuthSessionExpiredEvent>(_onAuthSessionExpiredEvent);
+    on<AuthSessionRefreshRequested>(_onAuthSessionRefreshRequested);
     on<AuthAccountDeletionRequested>(_onAuthAccountDeletionRequested);
   }
 
@@ -319,8 +319,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // Update user
-  Future<void> _onAuthUserUpdated(
-    AuthUserUpdated event,
+  Future<void> _onAuthUserUpdateRequested(
+    AuthUserUpdateRequested event,
     Emitter<AuthState> emit,
   ) async {
     emit(const AuthUserUpdateLoading());
@@ -446,8 +446,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // Session expired
-  Future<void> _onAuthSessionExpired(
-    AuthSessionExpired event,
+  Future<void> _onAuthSessionExpiredEvent(
+    AuthSessionExpiredEvent event,
     Emitter<AuthState> emit,
   ) async {
     _tokenRefreshTimer?.cancel();
@@ -458,8 +458,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // Session refreshed
-  void _onAuthSessionRefreshed(
-    AuthSessionRefreshed event,
+  void _onAuthSessionRefreshRequested(
+    AuthSessionRefreshRequested event,
     Emitter<AuthState> emit,
   ) {
     // This would be called after a successful token refresh
