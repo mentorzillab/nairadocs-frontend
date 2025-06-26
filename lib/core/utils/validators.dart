@@ -139,18 +139,7 @@ class Validators {
     return null;
   }
 
-  // Generic document number validation
-  static String? validateDocumentNumber(String? value, String documentType) {
-    if (value == null || value.trim().isEmpty) {
-      return '$documentType number is required';
-    }
-    
-    if (value.trim().length < 5) {
-      return '$documentType number must be at least 5 characters long';
-    }
-    
-    return null;
-  }
+
 
   // Date validation
   static String? validateDate(String? value, String fieldName) {
