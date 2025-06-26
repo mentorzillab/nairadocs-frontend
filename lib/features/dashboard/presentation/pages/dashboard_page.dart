@@ -27,8 +27,10 @@ class _DashboardPageState extends State<DashboardPage> {
   void initState() {
     super.initState();
     // Load documents and stats when dashboard opens
-    context.read<DocumentsBloc>().add(const DocumentsLoadRequested());
-    context.read<DocumentsBloc>().add(const DocumentsStatsLoadRequested());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<DocumentsBloc>().add(const DocumentsLoadRequested());
+      context.read<DocumentsBloc>().add(const DocumentsStatsLoadRequested());
+    });
   }
 
   Widget statusCard(String label, String value, {Color? color, Color? textColor}) {
@@ -550,3 +552,4 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
+}
