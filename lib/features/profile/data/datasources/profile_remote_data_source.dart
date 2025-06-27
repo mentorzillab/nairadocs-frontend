@@ -59,25 +59,23 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         return UserProfileModel.fromJson(response.data['data']);
       } else {
         throw ServerException(
-          message: response.data['message'] ?? 'Failed to get profile',
-          statusCode: response.statusCode,
+          response.data['message'] ?? 'Failed to get profile',
         );
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.connectionError) {
-        throw const NetworkException(message: 'Network connection failed');
+        throw const NetworkException('Network connection failed');
       } else if (e.response?.statusCode == 401) {
-        throw const UnauthorizedException(message: 'Authentication required');
+        throw const UnauthorizedException('Authentication required');
       } else {
         throw ServerException(
-          message: e.response?.data['message'] ?? 'Server error occurred',
-          statusCode: e.response?.statusCode,
+          e.response?.data['message'] ?? 'Server error occurred',
         );
       }
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -93,30 +91,27 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         return UserProfileModel.fromJson(response.data['data']);
       } else {
         throw ServerException(
-          message: response.data['message'] ?? 'Failed to update profile',
-          statusCode: response.statusCode,
+          response.data['message'] ?? 'Failed to update profile',
         );
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.connectionError) {
-        throw const NetworkException(message: 'Network connection failed');
+        throw const NetworkException('Network connection failed');
       } else if (e.response?.statusCode == 401) {
-        throw const UnauthorizedException(message: 'Authentication required');
+        throw const UnauthorizedException('Authentication required');
       } else if (e.response?.statusCode == 422) {
         throw ValidationException(
-          message: e.response?.data['message'] ?? 'Validation failed',
-          errors: e.response?.data['errors'],
+          e.response?.data['message'] ?? 'Validation failed',
         );
       } else {
         throw ServerException(
-          message: e.response?.data['message'] ?? 'Server error occurred',
-          statusCode: e.response?.statusCode,
+          e.response?.data['message'] ?? 'Server error occurred',
         );
       }
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -136,25 +131,23 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         return response.data['data']['imageUrl'] as String;
       } else {
         throw ServerException(
-          message: response.data['message'] ?? 'Failed to upload image',
-          statusCode: response.statusCode,
+          response.data['message'] ?? 'Failed to upload image',
         );
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.connectionError) {
-        throw const NetworkException(message: 'Network connection failed');
+        throw const NetworkException('Network connection failed');
       } else if (e.response?.statusCode == 401) {
-        throw const UnauthorizedException(message: 'Authentication required');
+        throw const UnauthorizedException('Authentication required');
       } else {
         throw ServerException(
-          message: e.response?.data['message'] ?? 'Server error occurred',
-          statusCode: e.response?.statusCode,
+          e.response?.data['message'] ?? 'Server error occurred',
         );
       }
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -170,25 +163,23 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         return UserProfileModel.fromJson(response.data['data']);
       } else {
         throw ServerException(
-          message: response.data['message'] ?? 'Failed to update profile image',
-          statusCode: response.statusCode,
+          response.data['message'] ?? 'Failed to update profile image',
         );
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.connectionError) {
-        throw const NetworkException(message: 'Network connection failed');
+        throw const NetworkException('Network connection failed');
       } else if (e.response?.statusCode == 401) {
-        throw const UnauthorizedException(message: 'Authentication required');
+        throw const UnauthorizedException('Authentication required');
       } else {
         throw ServerException(
-          message: e.response?.data['message'] ?? 'Server error occurred',
-          statusCode: e.response?.statusCode,
+          e.response?.data['message'] ?? 'Server error occurred',
         );
       }
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -207,31 +198,22 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to change password',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to change password');
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.connectionError) {
-        throw const NetworkException(message: 'Network connection failed');
+        throw const NetworkException('Network connection failed');
       } else if (e.response?.statusCode == 401) {
-        throw const UnauthorizedException(message: 'Current password is incorrect');
+        throw const UnauthorizedException('Current password is incorrect');
       } else if (e.response?.statusCode == 422) {
-        throw ValidationException(
-          message: e.response?.data['message'] ?? 'Password validation failed',
-          errors: e.response?.data['errors'],
-        );
+        throw ValidationException(e.response?.data['message'] ?? 'Password validation failed');
       } else {
-        throw ServerException(
-          message: e.response?.data['message'] ?? 'Server error occurred',
-          statusCode: e.response?.statusCode,
-        );
+        throw ServerException(e.response?.data['message'] ?? 'Server error occurred');
       }
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -244,15 +226,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to update email',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to update email');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -265,15 +244,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to verify email',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to verify email');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -283,15 +259,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final response = await dio.post('/profile/email/resend');
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to resend verification',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to resend verification');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -304,15 +277,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to update phone number',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to update phone number');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -325,15 +295,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to verify phone number',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to verify phone number');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -343,15 +310,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final response = await dio.post('/profile/phone/resend');
       
       if (response.statusCode != 200) {
-        throw ServerException(
-          message: response.data['message'] ?? 'Failed to resend phone verification',
-          statusCode: response.statusCode,
-        );
+        throw ServerException(response.data['message'] ?? 'Failed to resend phone verification');
       }
     } on DioException catch (e) {
       _handleDioException(e);
     } catch (e) {
-      throw ServerException(message: 'Unexpected error: $e');
+      throw ServerException('Unexpected error: $e');
     }
   }
 
@@ -493,18 +457,16 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout ||
         e.type == DioExceptionType.connectionError) {
-      throw const NetworkException(message: 'Network connection failed');
+      throw const NetworkException('Network connection failed');
     } else if (e.response?.statusCode == 401) {
-      throw const UnauthorizedException(message: 'Authentication required');
+      throw const UnauthorizedException('Authentication required');
     } else if (e.response?.statusCode == 422) {
       throw ValidationException(
-        message: e.response?.data['message'] ?? 'Validation failed',
-        errors: e.response?.data['errors'],
+        e.response?.data['message'] ?? 'Validation failed',
       );
     } else {
       throw ServerException(
-        message: e.response?.data['message'] ?? 'Server error occurred',
-        statusCode: e.response?.statusCode,
+        e.response?.data['message'] ?? 'Server error occurred',
       );
     }
   }

@@ -29,13 +29,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheProfile(remoteProfile);
         return Right(remoteProfile.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
       try {
@@ -43,10 +43,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
         if (localProfile != null) {
           return Right(localProfile.toEntity());
         } else {
-          return const Left(CacheFailure(message: 'No cached profile available'));
+          return const Left(CacheFailure('No cached profile available'));
         }
       } on CacheException catch (e) {
-        return Left(CacheFailure(message: e.message));
+        return Left(CacheFailure(e.message));
       }
     }
   }
@@ -60,18 +60,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheProfile(updatedProfile);
         return Right(updatedProfile.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } on ValidationException catch (e) {
-        return Left(ValidationFailure(message: e.message));
+        return Left(ValidationFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -82,16 +82,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final imageUrl = await remoteDataSource.uploadProfileImage(imagePath);
         return Right(imageUrl);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -103,16 +103,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheProfile(updatedProfile);
         return Right(updatedProfile.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -129,18 +129,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
         );
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } on ValidationException catch (e) {
-        return Left(ValidationFailure(message: e.message));
+        return Left(ValidationFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -151,18 +151,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.updateEmail(newEmail);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } on ValidationException catch (e) {
-        return Left(ValidationFailure(message: e.message));
+        return Left(ValidationFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -173,16 +173,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.verifyEmail(token);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -193,16 +193,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.resendEmailVerification();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -213,18 +213,18 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.updatePhoneNumber(phoneNumber);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } on ValidationException catch (e) {
-        return Left(ValidationFailure(message: e.message));
+        return Left(ValidationFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -235,16 +235,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.verifyPhoneNumber(otp);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -255,16 +255,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.resendPhoneVerification();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -287,16 +287,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheNotificationSettings(updatedSettings);
         return Right(updatedSettings.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -308,13 +308,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheNotificationSettings(remoteSettings);
         return Right(remoteSettings.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
       try {
@@ -322,10 +322,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
         if (localSettings != null) {
           return Right(localSettings.toEntity());
         } else {
-          return const Left(CacheFailure(message: 'No cached notification settings available'));
+          return const Left(CacheFailure('No cached notification settings available'));
         }
       } on CacheException catch (e) {
-        return Left(CacheFailure(message: e.message));
+        return Left(CacheFailure(e.message));
       }
     }
   }
@@ -348,16 +348,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheSecuritySettings(updatedSettings);
         return Right(updatedSettings.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -369,13 +369,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.cacheSecuritySettings(remoteSettings);
         return Right(remoteSettings.toEntity());
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
       try {
@@ -383,10 +383,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
         if (localSettings != null) {
           return Right(localSettings.toEntity());
         } else {
-          return const Left(CacheFailure(message: 'No cached security settings available'));
+          return const Left(CacheFailure('No cached security settings available'));
         }
       } on CacheException catch (e) {
-        return Left(CacheFailure(message: e.message));
+        return Left(CacheFailure(e.message));
       }
     }
   }
@@ -398,16 +398,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final qrCodeUrl = await remoteDataSource.enableTwoFactor();
         return Right(qrCodeUrl);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -418,16 +418,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final backupCodes = await remoteDataSource.verifyTwoFactorSetup(code);
         return Right(backupCodes);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -438,16 +438,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.disableTwoFactor(password);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -458,16 +458,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.enableBiometric();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -478,16 +478,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.disableBiometric();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -499,16 +499,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await localDataSource.clearAllCache();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -519,16 +519,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final userData = await remoteDataSource.exportUserData();
         return Right(userData);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -547,16 +547,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         );
         return Right(activities);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -567,16 +567,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         final devices = await remoteDataSource.getConnectedDevices();
         return Right(devices);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -587,16 +587,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.revokeDevice(deviceId);
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 
@@ -607,16 +607,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
         await remoteDataSource.revokeAllOtherSessions();
         return const Right(null);
       } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
+        return Left(ServerFailure(e.message));
       } on NetworkException catch (e) {
-        return Left(NetworkFailure(message: e.message));
+        return Left(NetworkFailure(e.message));
       } on UnauthorizedException catch (e) {
-        return Left(UnauthorizedFailure(message: e.message));
+        return Left(UnauthorizedFailure(e.message));
       } catch (e) {
-        return Left(ServerFailure(message: 'Unexpected error: $e'));
+        return Left(ServerFailure('Unexpected error: $e'));
       }
     } else {
-      return const Left(NetworkFailure(message: 'No internet connection'));
+      return const Left(NetworkFailure('No internet connection'));
     }
   }
 }

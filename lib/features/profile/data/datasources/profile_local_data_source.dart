@@ -35,7 +35,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       }
       return null;
     } catch (e) {
-      throw CacheException(message: 'Failed to get cached profile: $e');
+      throw CacheException('Failed to get cached profile: $e');
     }
   }
 
@@ -45,7 +45,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       final profileJson = json.encode(profile.toJson());
       await sharedPreferences.setString(_profileKey, profileJson);
     } catch (e) {
-      throw CacheException(message: 'Failed to cache profile: $e');
+      throw CacheException('Failed to cache profile: $e');
     }
   }
 
@@ -54,7 +54,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     try {
       await sharedPreferences.remove(_profileKey);
     } catch (e) {
-      throw CacheException(message: 'Failed to clear cached profile: $e');
+      throw CacheException('Failed to clear cached profile: $e');
     }
   }
 
@@ -68,7 +68,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       }
       return null;
     } catch (e) {
-      throw CacheException(message: 'Failed to get cached notification settings: $e');
+      throw CacheException('Failed to get cached notification settings: $e');
     }
   }
 
@@ -78,7 +78,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       final settingsJson = json.encode(settings.toJson());
       await sharedPreferences.setString(_notificationSettingsKey, settingsJson);
     } catch (e) {
-      throw CacheException(message: 'Failed to cache notification settings: $e');
+      throw CacheException('Failed to cache notification settings: $e');
     }
   }
 
@@ -92,7 +92,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       }
       return null;
     } catch (e) {
-      throw CacheException(message: 'Failed to get cached security settings: $e');
+      throw CacheException('Failed to get cached security settings: $e');
     }
   }
 
@@ -102,7 +102,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       final settingsJson = json.encode(settings.toJson());
       await sharedPreferences.setString(_securitySettingsKey, settingsJson);
     } catch (e) {
-      throw CacheException(message: 'Failed to cache security settings: $e');
+      throw CacheException('Failed to cache security settings: $e');
     }
   }
 
@@ -115,7 +115,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
         sharedPreferences.remove(_securitySettingsKey),
       ]);
     } catch (e) {
-      throw CacheException(message: 'Failed to clear all cache: $e');
+      throw CacheException('Failed to clear all cache: $e');
     }
   }
 }

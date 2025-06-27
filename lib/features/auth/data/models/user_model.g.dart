@@ -13,6 +13,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       lastName: json['lastName'] as String,
       phoneNumber: json['phoneNumber'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
+      role: json['role'] as String? ?? 'user',
       isEmailVerified: json['isEmailVerified'] as bool?,
       isPhoneVerified: json['isPhoneVerified'] as bool?,
       createdAt: json['createdAt'] == null
@@ -21,7 +22,6 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      role: json['role'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -31,9 +31,9 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'lastName': instance.lastName,
       'phoneNumber': instance.phoneNumber,
       'profileImageUrl': instance.profileImageUrl,
+      'role': instance.role,
       'isEmailVerified': instance.isEmailVerified,
       'isPhoneVerified': instance.isPhoneVerified,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'role': instance.role,
     };
