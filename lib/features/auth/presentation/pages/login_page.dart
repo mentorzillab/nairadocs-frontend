@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => Validators.validateRequired(value, 'Password'),
                     obscureText: true,
                     showPasswordToggle: true,
-                    prefixIcon: const Icon(Icons.lock_outline, color: AppColors.lightText),
+                    prefixIcon: const Icon(Icons.lock_outlined, color: AppColors.lightText),
                   ),
                   const SizedBox(height: 16),
 

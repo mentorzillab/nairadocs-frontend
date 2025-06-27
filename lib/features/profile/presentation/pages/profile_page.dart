@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(height: 16),
 
                   _buildMenuItem(
-                    icon: Icons.person_outline,
+                    icon: Icons.person_outlined,
                     title: 'Personal Information',
                     subtitle: 'Update your personal details',
                     onTap: () => _navigateToPersonalInfo(),
@@ -113,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
 
                   _buildMenuItem(
-                    icon: Icons.notifications_outline,
+                    icon: Icons.notifications_outlined,
                     title: 'Notifications',
                     subtitle: 'Manage your notification preferences',
                     onTap: () => _navigateToNotifications(),

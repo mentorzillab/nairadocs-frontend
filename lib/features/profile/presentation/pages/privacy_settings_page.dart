@@ -311,7 +311,7 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
             Row(
               children: [
                 Icon(
-                  Icons.info_outline,
+                  Icons.info_outlined,
                   color: AppColors.primary,
                 ),
                 const SizedBox(width: 12),
